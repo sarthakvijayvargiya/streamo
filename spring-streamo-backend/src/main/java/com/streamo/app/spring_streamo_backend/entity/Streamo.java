@@ -1,6 +1,7 @@
 package com.streamo.app.spring_streamo_backend.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.*;
 
@@ -13,6 +14,7 @@ import lombok.*;
 @Builder
 public class Streamo {
 
+    @Id
     private String videoId;
 
     private String contentType;
