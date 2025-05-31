@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+@theme {
+  --color-pr-bg:  #1E3978;
+  --color-sc-bg: #0E2148;
+  --color-btn-gradient: linear-gradient(90deg, #7F1DFF 0%, #491B9D 100%);
+  --color-text: #ffffff;
+}
