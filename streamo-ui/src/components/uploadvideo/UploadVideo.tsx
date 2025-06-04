@@ -5,7 +5,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 
 const UploadVideo = () => {
-  const [videoFile, setVideoFile] = useState(null);
+  const [videoFile, setVideoFile] = useState<File | null>(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [uploading, setUploading] = useState(false);
