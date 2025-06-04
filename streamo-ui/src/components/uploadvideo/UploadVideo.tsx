@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useRef } from "react";
 import { ArrowDownToLine, Loader } from "lucide-react";
 import axios from "axios";
@@ -11,9 +12,9 @@ const UploadVideo = () => {
   const [errors, setErrors] = useState({
     video: "",
     title: "",
-    description: "",
+    description: ""
   });
-  const fileInputRef = useRef();
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const showSuccessMessage = () => {
     toast.success("File Uploaded Successfully", {
@@ -26,11 +27,11 @@ const UploadVideo = () => {
     });
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = (e:any) => {
     const file = e.target.files[0];
     if (file && file.type.startsWith("video/")) {
       setVideoFile(file);
-      setErrors((prev) => ({ ...prev, video: null }));
+      setErrors((prev) => ({ ...prev, video: "" }));
     } else {
       setVideoFile(null);
       setErrors((prev) => ({
@@ -40,12 +41,12 @@ const UploadVideo = () => {
     }
   };
 
-  const handleDrop = (e) => {
+  const handleDrop = (e:any) => {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
     if (file && file.type.startsWith("video/")) {
       setVideoFile(file);
-      setErrors((prev) => ({ ...prev, video: null }));
+      setErrors((prev) => ({ ...prev, video: "" }));
     } else {
       setErrors((prev) => ({
         ...prev,
@@ -54,7 +55,7 @@ const UploadVideo = () => {
     }
   };
 
-  const handleUpload = (e) => {
+  const handleUpload = (e:any) => {
     e.preventDefault();
 
     const newErrors = {
@@ -84,7 +85,7 @@ const UploadVideo = () => {
     setUploading(false);
   };
 
-  async function saveVideoToServer(videoFile, title, description) {
+  async function saveVideoToServer(videoFile:any, title:any, description:any) {
     setUploading(true);
 
     const formData = new FormData();
@@ -108,6 +109,13 @@ const UploadVideo = () => {
       showErrorMessage();
     }
   }
+
+  const handleClick = () => {
+  if (fileInputRef.current) {
+    fileInputRef.current.click();
+  }
+};
+
   return (
     <form
       onSubmit={handleUpload}
@@ -123,7 +131,7 @@ const UploadVideo = () => {
           className={`border-2 border-dashed rounded-xl p-5 text-center cursor-pointer ${
             errors.video ? "border-red-500" : "border-[#483AA0]"
           } bg-[#0E2148] text-white mb-2`}
-          onClick={() => fileInputRef.current.click()}
+          onClick={handleClick}
           onDragOver={(e) => e.preventDefault()}
           onDrop={handleDrop}
         >
