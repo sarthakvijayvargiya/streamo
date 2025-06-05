@@ -88,12 +88,13 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public Streamo getVideo(String videoId) {
-        return null;
+        Streamo video = videoRepository.findById(videoId).orElseThrow(()->new RuntimeException("Video Not Fount"));
+        return video;
     }
 
     @Override
     public List<Streamo> getAllVideo() {
-        return null;
+        return videoRepository.findAll();
     }
 
     @Override
