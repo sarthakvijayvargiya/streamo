@@ -1,18 +1,19 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/navbar/Navbar";
-import TrendingVideos from "./components/trendingvideos/TrendingVideos";
-import UploadVideo from "./components/uploadvideo/UploadVideo";
 import VideoPlayer from "./components/videoplayer/VideoPlayer";
+import Home from "./components/home/Home";
+import NotFound from "./components/notfound/NotFound";
 
 function App() {
   return (
     <>
       <Navbar />
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <UploadVideo />
-        <TrendingVideos />
-      </div>
-        <VideoPlayer/>
+      <Routes>
+        <Route path="/" element={<Home/>} />
+        <Route path="/video/:id" element={<VideoPlayer />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </>
   );
 }
